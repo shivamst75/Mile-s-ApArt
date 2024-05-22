@@ -1,0 +1,334 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link rel="icon" type="image/x-icon" href="Welcome page.png" />
+    <title>Mile(s) ApArt</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 97%;
+        width: 100%;
+      }
+    </style>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.24/esri/themes/light/main.css"
+    />
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      #color-light {
+        background-color: #99e2b4;
+        color: rgb(0, 0, 0);
+      }
+
+      .btn:hover {
+        background-color: #99e2b4;
+      }
+
+      .color-dark {
+        color: #14746f;
+      }
+
+      .bg-darkA {
+        background-color: #14746f;
+      }
+
+      .font-size {
+        font-size: 22px;
+      }
+
+      .text-white {
+        color: white;
+      }
+    </style>
+
+    <!-- <script>
+    
+    </script> -->
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #14746f"
+    >
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link font-size" href="map"
+              >Home <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-size" href="myprofile"
+              >My Profile <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-size" href="my_rides"
+              >My Rides <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-size" href="faqs"
+              >FAQs <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-size" href="aboutus"
+              >About us <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-size" href="Get_in_touch"
+              >Contact<span class="sr-only"></span
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <span class="navbar-text navbar-brand active font-size">
+        Mile(s) Apart
+      </span>
+    </nav>
+
+    <div id="viewDiv"></div>
+    
+    <h1 style="text-align: center;">Take your Ride</h1>
+    <div id="formDP container" style="padding: 100px">
+      <form method="post" action="/add">
+        <div class="form-group">
+          <label for="formGroupExampleInput">Select a Role</label>
+          <input type="radio" name="usertypee" value="0"/>
+          <label for="usertype">Driver</label>
+          <input type="radio" name="usertypee" value="1"/>
+          <label for="usertype">Passenger</label>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">From</label>
+          <input type="text" class="form-control" placeholder="From" name="frome" required/>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">To</label>
+          <input type="text" class="form-control" placeholder="To" name="toe" required/>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Time of travel</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="9:00 AM - 9:30 AM"
+            name="timee"
+            required
+          />
+        </div>
+        <div
+          id="date-picker-example"
+          class="md-form md-outline input-with-post-icon datepicker"
+          inline="true"
+        >
+          <label for="example">Date</label>
+          <input type="date" class="form-control" placeholder="" name="datee" required/>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Terms And Condition</label>
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+          ></textarea>
+        </div>
+        <button
+          id="addDriver"
+          class="btn btn-lg text-white my-2"
+          style="background-color: #14746f"
+          type="submit"
+        >
+          <i class="glyphicon glyphicon-ok-sign"></i>Submit
+        </button>
+      </form>
+    </div>
+
+
+    
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://js.arcgis.com/4.24/"></script>
+  <script>
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/views/MapView",
+
+      "esri/widgets/Search",
+      "esri/Graphic",
+      "esri/rest/route",
+      "esri/rest/support/RouteParameters",
+      "esri/rest/support/FeatureSet",
+    ], function (
+      esriConfig,
+      Map,
+      MapView,
+      Search,
+      Graphic,
+      route,
+      RouteParameters,
+      FeatureSet
+    ) {
+      esriConfig.apiKey =
+        "AAPKe24154a0828b47c7bb4cb3ff316f67a4VIw6yvgzo1Qxf13yOZxeSSJ1aRO5cgyIPo05PG6VHDq5iTYJbNpXxIBHB9PGDrHZ";
+
+      const map = new Map({
+        basemap: "arcgis-navigation", //Basemap layer service
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [72.6568, 23.2175], //Longitude, latitude
+        zoom: 12,
+      });
+
+      const searchOrigin = new Search({
+        //Add Search widget
+        id: "fromSearch",
+        view: view,
+      });
+
+      const searchDestination = new Search({
+        //Add Search widget
+        id: "toSearch",
+        allPlaceholder: "FROM ?",
+        view: view,
+      });
+
+      view.ui.add(searchOrigin, "bottom-left");
+      view.ui.add(searchDestination, "bottom-left");
+
+      const routeUrl =
+        "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
+
+      view.on("click", function (event) {
+        if (view.graphics.length === 1) {
+          addGraphic("origin", event.mapPoint);
+        } else if (view.graphics.length === 3) {
+          addGraphic("destination", event.mapPoint);
+
+          getRoute(); // Call the route service
+        } else if (view.graphic.length !== 2) {
+          view.graphics.removeAll();
+          addGraphic("origin", event.mapPoint);
+        }
+      });
+
+      //getRoute();
+
+      function addGraphic(type, point) {
+        const graphic = new Graphic({
+          symbol: {
+            type: "simple-marker",
+            color: type === "origin" ? "white" : "black",
+            size: "8px",
+          },
+          geometry: point,
+        });
+        view.graphics.add(graphic);
+      }
+
+      // view.when(function () {
+      //   document.getElementById("fromSearch_input").placeholder = "From ?";
+      //   document.getElementById("toSearch_input").placeholder = "To ?";
+      // });
+      function getRoute() {
+        const routeParams = new RouteParameters({
+          stops: new FeatureSet({
+            features: view.graphics.toArray(),
+          }),
+
+          returnDirections: true,
+        });
+
+        route
+          .solve(routeUrl, routeParams)
+          .then(function (data) {
+            data.routeResults.forEach(function (result) {
+              result.route.symbol = {
+                type: "simple-line",
+                color: [5, 150, 255],
+                width: 3,
+              };
+              view.graphics.add(result.route);
+            });
+
+            // Display directions
+            if (data.routeResults.length > 0) {
+              const directions = document.createElement("ol");
+              directions.classList =
+                "esri-widget esri-widget--panel esri-directions__scroller";
+              directions.style.marginTop = "0";
+              directions.style.padding = "15px 15px 15px 30px";
+              const features = data.routeResults[0].directions.features;
+
+              // Show each direction
+              features.forEach(function (result, i) {
+                const direction = document.createElement("li");
+                direction.innerHTML =
+                  result.attributes.text +
+                  " (" +
+                  result.attributes.length.toFixed(2) +
+                  " miles)";
+                directions.appendChild(direction);
+              });
+
+              view.ui.empty("bottom-right");
+              view.ui.add(directions, "bottom-right");
+            }
+          })
+
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    });
+  </script>
+</html>

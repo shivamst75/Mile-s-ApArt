@@ -1,0 +1,47 @@
+<%- include('partials/header') %>
+<div class="container mt-5" style="color: #99E2B4 ;">
+  <h1>Register</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card" style="background-color: #99E2B4 ;">
+        <!-- Makes POST request to /register route -->
+        <form action="/register" method="post">
+          <div class="card-body">
+            <div class="form-group">
+              
+              <input type="email" class="form-control" name="username" required placeholder="Employee Id" />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" required placeholder="Full Name" />
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" name="phoneNo" required placeholder="Phone No."/>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" name="password" required placeholder="Password"/>
+            </div>
+            <button type="submit" class="btn btn1 btn-light">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card social-block" style="background-color: #99E2B4 ;">
+        <div class="card-body" >
+          <a
+            class="btn btn-social btn-google"
+            href="/auth/google"
+            role="button"
+          >
+            <i class="fab fa-google"></i>
+            Sign Up with Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/header') %>
